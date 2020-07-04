@@ -66,7 +66,7 @@ td = zeros(1, length(t));
 for i = 1:length(t)
 
     % Time delay for round trip on this iteration, given constant velocity.
-    tau = (R + t(i) * v) / c;  % seconds
+    tau = 2*(R + t(i) * v) / c;  % seconds
     
     % For each sample we need update the transmitted and received signal. 
     Tx(i) = cos(2 * pi * (fc * t(i) + slope * t(i)^2 / 2));
@@ -96,7 +96,8 @@ one_side_fft = abs_fft(1 : Nr / 2);
 % Plotting the range using the output of first FFT
 figure('Name', 'Range from first FFT');
 f = Nr / length(one_side_fft) * (0 : (Nr / 2 - 1));
-plot(f, one_side_fft);
+%plot(f, one_side_fft);
+plot(one_side_fft);
 axis([0 200 0 0.5]);
 
 %% Range Doppler response
